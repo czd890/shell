@@ -105,18 +105,18 @@ function check_and_download(){
         return 0;
     fi
      
-    #if [ -z "$PKG_URL" ]; then
-    #    echo -e "\\033[31;1m$PKG_NAME not found.\\033[39;49;0m" 
-    #    return -1;
-    #fi
-    # 
-    #wget -c "$PKG_URL";
-    #PKG_VAR_VAL=$(ls -d $PKG_MATCH_EXPR);
-    # 
-    #if [ -z "$PKG_VAR_VAL" ]; then
-    #    echo -e "\\033[31;1m$PKG_NAME not found.\\033[39;49;0m" 
-    #    return -1;
-    #fi
+    if [ -z "$PKG_URL" ]; then
+        echo -e "\\033[31;1m$PKG_NAME not found.\\033[39;49;0m" 
+        return -1;
+    fi
+     
+    wget -c "$PKG_URL";
+    PKG_VAR_VAL=$(ls -d $PKG_MATCH_EXPR);
+     
+    if [ -z "$PKG_VAR_VAL" ]; then
+        echo -e "\\033[31;1m$PKG_NAME not found.\\033[39;49;0m" 
+        return -1;
+    fi
    
     echo "$PKG_VAR_VAL";
 }
